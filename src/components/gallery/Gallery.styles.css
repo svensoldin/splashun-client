@@ -1,0 +1,40 @@
+.gallery {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	/*	width: 100%;*/
+	border: 1px solid grey;
+	padding: 5px;
+}
+
+.list-element {
+	height: 30vh;
+	flex-grow: 1;
+	position: relative;
+}
+
+img {
+	max-height: 100%;
+	min-width: 100%;
+	object-fit: cover;
+	vertical-align: bottom;
+	transition: 0.5s ease;
+}
+
+.overlay {
+	opacity: 0;
+	position: absolute;
+	top: 30%;
+	left: 40%;
+	display: none;
+	transition: 0.5s ease;
+}
+
+.list-element:hover .overlay {
+	display: block;
+	opacity: 1;
+}
+
+.list-element:hover img {
+	opacity: 0.8;
+}

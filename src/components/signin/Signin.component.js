@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./Signin.styles.css";
 
-const SignIn = () => {
+const SignIn = ({ setToken, setIsAuthenticated }) => {
 	const [credentials, setCredentials] = useState({
 		email: "",
 		password: "",
@@ -18,7 +18,8 @@ const SignIn = () => {
 			password,
 		});
 		const token = res.data;
-		return token;
+		setToken(token);
+		setIsAuthenticated(true);
 	};
 
 	const handleChange = (e) => {
