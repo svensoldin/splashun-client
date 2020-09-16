@@ -1,10 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { selectToken } from "../../redux/user/user.selectors";
+import { selectPictureAdded } from "../../redux/picture/picture.selectors";
 import axios from "axios";
 
 import "./Gallery.styles.css";
 
-const Gallery = ({ token, search }) => {
+const Gallery = ({ token, search, picture }) => {
 	const [pictures, setPictures] = useState([]);
 
 	useEffect(() => {
@@ -16,7 +18,7 @@ const Gallery = ({ token, search }) => {
 			setPictures(fetchedPictures);
 		};
 		getPictures();
-	}, [setPictures, token]);
+	}, [setPictures, token, picture]);
 
 	const filteredPictures = pictures.filter((picture) => {
 		return picture.label.toLowerCase().includes(search.toLowerCase());
@@ -43,7 +45,8 @@ const Gallery = ({ token, search }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		token: state.user.token,
+		token: selectToken(state),
+		picture: selectPictureAdded(state),
 	};
 };
 

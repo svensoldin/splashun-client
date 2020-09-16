@@ -5,13 +5,15 @@ import Gallery from "./components/gallery/Gallery.component";
 import Searchbar from "./components/searchbar/Searchbar.component";
 import AddPicture from "./components/add-picture/AddPicture.component";
 
+import { selectToken } from "./redux/user/user.selectors";
+
 import "./App.css";
 
-function App({ isAuthenticated, token }) {
+function App({ token }) {
 	const [search, setSearch] = useState("");
 	return (
 		<div className="App">
-			{isAuthenticated ? (
+			{token ? (
 				<Fragment>
 					<Searchbar setSearch={setSearch} />
 					<Gallery search={search} />
@@ -26,8 +28,7 @@ function App({ isAuthenticated, token }) {
 
 const mapStateToProps = (state) => {
 	return {
-		isAuthenticated: state.user.isAuthenticated,
-		token: state.user.token,
+		token: selectToken(state),
 	};
 };
 
