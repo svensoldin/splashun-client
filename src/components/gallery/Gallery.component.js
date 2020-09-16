@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { connect } from "react-redux";
 import axios from "axios";
 
 import "./Gallery.styles.css";
@@ -40,4 +41,10 @@ const Gallery = ({ token, search }) => {
 	);
 };
 
-export default Gallery;
+const mapStateToProps = (state) => {
+	return {
+		token: state.user.token,
+	};
+};
+
+export default connect(mapStateToProps)(Gallery);

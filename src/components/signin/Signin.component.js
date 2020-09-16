@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import axios from "axios";
+
+import {
+	signInStart,
+	signInSuccess,
+	signInFailure,
+} from "../../redux/user/user.actions";
 
 import "./Signin.styles.css";
 
-const SignIn = ({ setToken, setIsAuthenticated }) => {
+const SignIn = ({ signInStart, signInSuccess, signInFailure }) => {
 	const [credentials, setCredentials] = useState({
 		email: "",
 		password: "",
@@ -13,13 +20,17 @@ const SignIn = ({ setToken, setIsAuthenticated }) => {
 
 	const handleSignin = async (e) => {
 		e.preventDefault();
-		const res = await axios.post("http://localhost:5000/users/signin", {
-			email,
-			password,
-		});
-		const token = res.data;
-		setToken(token);
-		setIsAuthenticated(true);
+		signInStart();
+		try {
+			const res = await axios.post("http://localhost:5000/users/signin", {
+				email,
+				password,
+			});
+			const token = res.data;
+			signInSuccess(token);
+		} catch (err) {
+			signInFailure(err);
+		}
 	};
 
 	const handleChange = (e) => {
@@ -57,4 +68,12 @@ const SignIn = ({ setToken, setIsAuthenticated }) => {
 	);
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		signInStart: () => dispatch(signInStart()),
+		signInSuccess: (token) => dispatch(signInSuccess(token)),
+		signInFailure: (err) => dispatch(signInFailure(err)),
+	};
+};
+
+export default connect(null, mapDispatchToProps)(SignIn);

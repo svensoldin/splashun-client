@@ -1,29 +1,34 @@
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
 import Signin from "./components/signin/Signin.component";
 import Gallery from "./components/gallery/Gallery.component";
 import Searchbar from "./components/searchbar/Searchbar.component";
+import AddPicture from "./components/add-picture/AddPicture.component";
 
 import "./App.css";
 
-function App() {
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	const [token, setToken] = useState("");
+function App({ isAuthenticated, token }) {
 	const [search, setSearch] = useState("");
 	return (
 		<div className="App">
 			{isAuthenticated ? (
 				<Fragment>
 					<Searchbar setSearch={setSearch} />
-					<Gallery token={token} search={search} />
+					<Gallery search={search} />
+					<AddPicture token={token} />
 				</Fragment>
 			) : (
-				<Signin
-					setToken={setToken}
-					setIsAuthenticated={setIsAuthenticated}
-				/>
+				<Signin />
 			)}
 		</div>
 	);
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return {
+		isAuthenticated: state.user.isAuthenticated,
+		token: state.user.token,
+	};
+};
+
+export default connect(mapStateToProps)(App);
