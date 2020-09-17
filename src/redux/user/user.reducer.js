@@ -17,6 +17,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				err: action.payload,
 			};
+		case UserActionTypes.REGISTER_SUCCESS:
+			return {
+				...state,
+				token: action.payload,
+			};
+		case UserActionTypes.REGISTER_FAILURE:
+			return {
+				...state,
+				err: action.payload,
+			};
 		default:
 			return state;
 	}

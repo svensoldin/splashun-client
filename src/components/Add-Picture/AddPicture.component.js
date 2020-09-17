@@ -1,13 +1,21 @@
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
+
 import {
 	pictureAddSuccess,
 	pictureAddFailure,
+	toggleAddPicture,
 } from "../../redux/picture/picture.actions";
-import { selectToken } from "../../redux/user/user.selectors";
-import axios from "axios";
 
-const AddPicture = ({ token, pictureAddSuccess, pictureAddFailure }) => {
+import { selectToken } from "../../redux/user/user.selectors";
+
+const AddPicture = ({
+	token,
+	pictureAddSuccess,
+	pictureAddFailure,
+	toggleAddPicture,
+}) => {
 	const [formFields, setFormFields] = useState({
 		label: "",
 		imageURL: "",
@@ -28,6 +36,7 @@ const AddPicture = ({ token, pictureAddSuccess, pictureAddFailure }) => {
 				},
 			});
 			pictureAddSuccess(res);
+			toggleAddPicture();
 		} catch (err) {
 			pictureAddFailure(err);
 		}
@@ -64,7 +73,7 @@ const AddPicture = ({ token, pictureAddSuccess, pictureAddFailure }) => {
 						onChange={handleChange}
 					></input>
 				</label>
-				<button className="cancel" type="button">
+				<button className="cancel" type="button" onClick={toggleAddPicture}>
 					Cancel
 				</button>
 				<button className="submit" type="button" onClick={handleAddPicture}>
@@ -85,6 +94,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		pictureAddSuccess: (picture) => dispatch(pictureAddSuccess(picture)),
 		pictureAddFailure: (err) => dispatch(pictureAddFailure(err)),
+		toggleAddPicture: () => dispatch(toggleAddPicture()),
 	};
 };
 

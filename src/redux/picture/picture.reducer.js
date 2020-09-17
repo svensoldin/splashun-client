@@ -1,6 +1,7 @@
 import PictureActionTypes from "./picture.types";
 
 const INITIAL_STATE = {
+	hidden: true,
 	err: null,
 };
 
@@ -15,6 +16,11 @@ const pictureReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				err: action.payload,
+			};
+		case PictureActionTypes.TOGGLE_ADD_PICTURE:
+			return {
+				...state,
+				hidden: !state.hidden,
 			};
 		default:
 			return state;

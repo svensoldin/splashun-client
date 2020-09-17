@@ -1,6 +1,7 @@
 const PictureActionTypes = {
 	PICTURE_ADD_SUCCESS: "PICTURE_ADD_SUCCESS",
 	PICTURE_ADD_FAILURE: "PICTURE_ADD_FAILURE",
+	TOGGLE_ADD_PICTURE: "TOGGLE_ADD_PICTURE",
 };
 
 export default PictureActionTypes;

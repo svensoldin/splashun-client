@@ -12,3 +12,9 @@ export const pictureAddFailure = (err) => {
 		payload: err,
 	};
 };
+
+export const toggleAddPicture = () => {
+	return {
+		type: PictureActionTypes.TOGGLE_ADD_PICTURE,
+	};
+};

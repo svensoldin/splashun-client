@@ -6,3 +6,8 @@ export const selectPictureAdded = createSelector(
 	[selectPicture],
 	(picture) => picture.pictureAdded
 );
+
+export const selectHidden = createSelector(
+	[selectPicture],
+	(picture) => picture.hidden
+);

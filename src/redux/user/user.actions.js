@@ -19,3 +19,17 @@ export const signInFailure = (err) => {
 		payload: err,
 	};
 };
+
+export const registerSuccess = (token) => {
+	return {
+		type: UserActionTypes.REGISTER_SUCCESS,
+		payload: token,
+	};
+};
+
+export const registerFailure = (err) => {
+	return {
+		type: UserActionTypes.REGISTER_FAILURE,
+		payload: err,
+	};
+};
