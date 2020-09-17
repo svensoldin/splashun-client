@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
+import "../signin/Signin.styles.css";
+
 import {
 	registerSuccess,
 	registerFailure,
@@ -36,41 +38,46 @@ const Register = ({ registerSuccess, registerFailure }) => {
 	};
 
 	return (
-		<div className="register">
-			<form onSubmit={handleSubmit}>
-				<label>
-					Name
+		<div className="form-container">
+			<form className="signin-form" onSubmit={handleSubmit}>
+				<h3>Sign Up</h3>
+				<div className="form-field">
+					<label className="label">Name</label>
 					<input
 						type="text"
 						name="name"
 						required
-						placeholder="John"
+						placeholder="enter name"
 						value={name}
 						onChange={handleChange}
-					></input>
-				</label>
-				<label>
-					Email
+						className="input"
+					/>
+				</div>
+				<div className="form-field">
+					<label className="label">Email</label>
 					<input
 						type="email"
 						name="email"
 						required
-						placeholder="johndoe@example.com"
+						placeholder="enter email"
 						value={email}
 						onChange={handleChange}
-					></input>
-				</label>
-				<label>
-					Password
+						className="input"
+					/>
+				</div>
+				<div className="form-field">
+					<label className="label">Password</label>
 					<input
 						type="password"
 						name="password"
 						required
 						value={password}
 						onChange={handleChange}
-					></input>
-				</label>
-				<button type="button" onClick={handleSubmit}>
+						className="input"
+						placeholder="enter password"
+					/>
+				</div>
+				<button type="button" className="button" onClick={handleSubmit}>
 					Register
 				</button>
 			</form>

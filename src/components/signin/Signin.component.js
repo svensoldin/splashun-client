@@ -39,32 +39,47 @@ const SignIn = ({ signInStart, signInSuccess, signInFailure }) => {
 	};
 
 	return (
-		<form className="signin-form" onSubmit={handleSignin} autoComplete="off">
-			<label>
-				Email:
-				<input
-					type="email"
-					name="email"
-					required
-					value={email}
-					onChange={handleChange}
-					autoComplete="off"
-				></input>
-			</label>
-			<label>
-				Password:
-				<input
-					type="password"
-					name="password"
-					required
-					value={password}
-					onChange={handleChange}
-				></input>
-			</label>
-			<button className="button" type="">
-				Sign In
-			</button>
-		</form>
+		<div className="form-container">
+			<form
+				className="signin-form"
+				onSubmit={handleSignin}
+				autoComplete="off"
+			>
+				<h3>Sign in</h3>
+				<div className="form-field">
+					<label className="label">Email</label>
+					<input
+						type="email"
+						name="email"
+						required
+						value={email}
+						onChange={handleChange}
+						autoComplete="off"
+						className="input"
+						placeholder="Enter email"
+					/>
+				</div>
+				<div className="form-field">
+					<label className="label">Password</label>
+					<input
+						type="password"
+						name="password"
+						required
+						value={password}
+						onChange={handleChange}
+						className="input"
+						placeholder="Enter password"
+					/>
+				</div>
+				<button className="button" type="button" onClick={handleSignin}>
+					Sign In
+				</button>
+				<p>
+					Don't have an account ?{" "}
+					<span className="register-link">Register here</span>
+				</p>
+			</form>
+		</div>
 	);
 };
 
