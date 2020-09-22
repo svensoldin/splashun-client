@@ -10,6 +10,8 @@ import {
 
 import { selectToken } from "../../redux/user/user.selectors";
 
+import "./AddPicture.styles.css";
+
 const AddPicture = ({
 	token,
 	pictureAddSuccess,
@@ -50,35 +52,43 @@ const AddPicture = ({
 	return (
 		<Fragment>
 			<h2>Add a photo</h2>
-			<form className="add-picture" onSubmit={handleAddPicture}>
-				<label>
-					Label
-					<input
-						type="text"
-						name="label"
-						placeholder="Ex: My cute dog"
-						required
-						value={label}
-						onChange={handleChange}
-					></input>
-				</label>
-				<label>
-					Photo URL
-					<input
-						type="text"
-						name="imageURL"
-						placeholder="https://images.unsplash.com/photo-15834235436"
-						required
-						value={imageURL}
-						onChange={handleChange}
-					></input>
-				</label>
-				<button className="cancel" type="button" onClick={toggleAddPicture}>
-					Cancel
-				</button>
-				<button className="submit" type="button" onClick={handleAddPicture}>
-					Submit
-				</button>
+			<form className="add-picture-form" onSubmit={handleAddPicture}>
+				<label className="label">Label</label>
+				<input
+					type="text"
+					name="label"
+					placeholder="Ex: My cute dog"
+					required
+					value={label}
+					onChange={handleChange}
+					className="add-picture-input"
+				/>
+				<label className="label">Photo URL</label>
+				<input
+					type="text"
+					name="imageURL"
+					placeholder="https://images.unsplash.com/photo-15834235436"
+					required
+					value={imageURL}
+					onChange={handleChange}
+					className="add-picture-input"
+				/>
+				<div className="button-container">
+					<button
+						className="cancel"
+						type="button"
+						onClick={toggleAddPicture}
+					>
+						Cancel
+					</button>
+					<button
+						className="submit"
+						type="button"
+						onClick={handleAddPicture}
+					>
+						Submit
+					</button>
+				</div>
 			</form>
 		</Fragment>
 	);

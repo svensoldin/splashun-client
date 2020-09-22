@@ -10,7 +10,12 @@ import {
 
 import "./Signin.styles.css";
 
-const SignIn = ({ signInStart, signInSuccess, signInFailure }) => {
+const SignIn = ({
+	signInStart,
+	signInSuccess,
+	signInFailure,
+	setShowRegister,
+}) => {
 	const [credentials, setCredentials] = useState({
 		email: "",
 		password: "",
@@ -71,13 +76,9 @@ const SignIn = ({ signInStart, signInSuccess, signInFailure }) => {
 						placeholder="Enter password"
 					/>
 				</div>
-				<button className="button" type="button" onClick={handleSignin}>
+				<button className="button" onClick={handleSignin}>
 					Sign In
 				</button>
-				<p>
-					Don't have an account ?{" "}
-					<span className="register-link">Register here</span>
-				</p>
 			</form>
 		</div>
 	);

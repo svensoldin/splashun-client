@@ -1,3 +1,35 @@
 .App {
 	text-align: center;
 }
+
+.add-picture-btn {
+	padding: 15px;
+	border-radius: 15px;
+	color: white;
+	background-color: #3cb371;
+	border: 1px solid #3cb371;
+	font-size: 12px;
+	cursor: pointer;
+	width: 150px;
+	font-weight: bold;
+}
+
+.modal {
+	position: absolute;
+	top: 25vh;
+	left: 25vw;
+	outline: none;
+	width: 50%;
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: rgba(60, 60, 60, 0.65);
+}

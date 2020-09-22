@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
+
+import "./Searchbar.styles.css";
 
 const Searchbar = ({ setSearch }) => {
 	const handleSearch = (e) => {
@@ -6,9 +8,14 @@ const Searchbar = ({ setSearch }) => {
 	};
 
 	return (
-		<div>
-			<input type="text" onChange={handleSearch}></input>
-		</div>
+		<Fragment>
+			<input
+				type="text"
+				onChange={handleSearch}
+				className="searchbar"
+				placeHolder="search pictures..."
+			/>
+		</Fragment>
 	);
 };
 

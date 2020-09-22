@@ -1,17 +1,22 @@
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import Signin from "./components/signin/Signin.component";
-import Register from "./components/register/Register.component";
+import Modal from "react-modal";
+
+//Components
 import Gallery from "./components/gallery/Gallery.component";
 import Searchbar from "./components/searchbar/Searchbar.component";
 import AddPicture from "./components/add-picture/AddPicture.component";
+import SignInAndSignUp from "./components/signin-and-signup/SignInAndSignUp.component";
+import Navbar from "./components/navbar/Navbar.component";
 
-import { toggleAddPicture } from "./redux/picture/picture.actions";
-
+//Redux
 import { selectToken } from "./redux/user/user.selectors";
 import { selectHidden } from "./redux/picture/picture.selectors";
+import { toggleAddPicture } from "./redux/picture/picture.actions";
 
 import "./App.css";
+
+Modal.setAppElement("#root");
 
 function App({ token, hidden, toggleAddPicture }) {
 	const [search, setSearch] = useState("");
@@ -19,23 +24,20 @@ function App({ token, hidden, toggleAddPicture }) {
 		<div className="App">
 			{token ? (
 				<Fragment>
-					{hidden ? (
-						<button
-							className="add-picture-btn"
-							onClick={toggleAddPicture}
-						>
-							Add photo
-						</button>
-					) : (
-						<AddPicture />
-					)}
-					<Searchbar setSearch={setSearch} />
+					<Navbar setSearch={setSearch} />
 					<Gallery search={search} />
+					<Modal
+						isOpen={!hidden}
+						onRequestClose={toggleAddPicture}
+						className="modal"
+						overlayClassName="modal-overlay"
+					>
+						<AddPicture />
+					</Modal>
 				</Fragment>
 			) : (
 				<Fragment>
-					<Signin />
-					<Register />
+					<SignInAndSignUp />
 				</Fragment>
 			)}
 		</div>
@@ -49,10 +51,8 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		toggleAddPicture: () => dispatch(toggleAddPicture()),
-	};
-};
+const mapDispatchToProps = (dispatch) => ({
+	toggleAddPicture: () => dispatch(toggleAddPicture()),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
