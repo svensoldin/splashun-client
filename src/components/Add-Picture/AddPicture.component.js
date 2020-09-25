@@ -38,6 +38,7 @@ const AddPicture = ({
 				},
 			});
 			pictureAddSuccess(res);
+			//Hides the add-picture modal component
 			toggleAddPicture();
 		} catch (err) {
 			pictureAddFailure(err);

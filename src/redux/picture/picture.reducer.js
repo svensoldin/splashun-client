@@ -22,6 +22,11 @@ const pictureReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				hidden: !state.hidden,
 			};
+		case PictureActionTypes.PICTURE_FETCH_FAILURE:
+			return {
+				...state,
+				err: action.payload,
+			};
 		default:
 			return state;
 	}

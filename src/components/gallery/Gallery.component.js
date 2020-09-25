@@ -1,7 +1,9 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import Masonry from "react-masonry-css";
+
+import { pictureFetchFailure } from "../../redux/picture/picture.actions";
 
 //Selectors
 import { selectToken } from "../../redux/user/user.selectors";
@@ -9,19 +11,23 @@ import { selectPictureAdded } from "../../redux/picture/picture.selectors";
 
 import "./Gallery.styles.css";
 
-const Gallery = ({ token, search, picture }) => {
+const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 	const [pictures, setPictures] = useState([]);
 
 	useEffect(() => {
 		const getPictures = async () => {
-			const res = await axios.get("http://localhost:5000/pictures", {
-				headers: { "x-auth-token": token },
-			});
-			const fetchedPictures = res.data;
-			setPictures(fetchedPictures);
+			try {
+				const res = await axios.get("http://localhost:5000/pictures", {
+					headers: { "x-auth-token": token },
+				});
+				const fetchedPictures = res.data;
+				setPictures(fetchedPictures);
+			} catch (err) {
+				pictureFetchFailure(err);
+			}
 		};
 		getPictures();
-	}, [setPictures, token, picture]);
+	}, [setPictures, token, picture, pictureFetchFailure]);
 
 	const filteredPictures = pictures.filter((picture) => {
 		return picture.label.toLowerCase().includes(search.toLowerCase());
@@ -59,18 +65,10 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(Gallery);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		pictureFetchFailure: (err) => dispatch(pictureFetchFailure(err)),
+	};
+};
 
-// // <Fragment>
-// <div className="gallery">
-// 	{filteredPictures.map((picture) => (
-// 		<li key={picture._id} className="list-element">
-// 			<img src={picture.imageURL} alt={picture.label}></img>
-// 			<div className="overlay">
-// 				<p className="label">{picture.label}</p>
-// 				<button className="delete">Delete</button>
-// 			</div>
-// 		</li>
-// 	))}
-// </div>;
-// // </Fragment>
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);

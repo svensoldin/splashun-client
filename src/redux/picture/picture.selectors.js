@@ -11,3 +11,8 @@ export const selectHidden = createSelector(
 	[selectPicture],
 	(picture) => picture.hidden
 );
+
+export const selectError = createSelector(
+	[selectPicture],
+	(picture) => picture.err
+);
