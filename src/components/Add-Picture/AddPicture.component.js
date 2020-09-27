@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { SERVER_URL } from "../../constants";
 
 import {
 	pictureAddSuccess,
@@ -30,7 +31,7 @@ const AddPicture = ({
 		try {
 			const res = await axios({
 				method: "post",
-				url: "http://localhost:5000/pictures/",
+				url: `${SERVER_URL}/pictures`,
 				headers: { "x-auth-token": token },
 				data: {
 					label,

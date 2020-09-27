@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import Masonry from "react-masonry-css";
+import { SERVER_URL } from "../../constants";
 
+//Components
+import Masonry from "react-masonry-css";
+import ImageViewer from "react-simple-image-viewer";
+import Photo from "../photo/Photo.component";
+
+//Actions
 import { pictureFetchFailure } from "../../redux/picture/picture.actions";
 
 //Selectors
@@ -13,11 +19,12 @@ import "./Gallery.styles.css";
 
 const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 	const [pictures, setPictures] = useState([]);
-
+	const [isLoading, setIsLoading] = useState(true);
+	const [viewer, setViewer] = useState({ isOpen: false, index: 0 });
 	useEffect(() => {
 		const getPictures = async () => {
 			try {
-				const res = await axios.get("http://localhost:5000/pictures", {
+				const res = await axios.get(`${SERVER_URL}/pictures`, {
 					headers: { "x-auth-token": token },
 				});
 				const fetchedPictures = res.data;
@@ -25,6 +32,7 @@ const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 			} catch (err) {
 				pictureFetchFailure(err);
 			}
+			setIsLoading(false);
 		};
 		getPictures();
 	}, [setPictures, token, picture, pictureFetchFailure]);
@@ -33,28 +41,38 @@ const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 		return picture.label.toLowerCase().includes(search.toLowerCase());
 	});
 
-	return !pictures.length ? (
-		<h2>LOADING</h2>
+	const imageSources = filteredPictures.map((picture) => picture.imageURL);
+	const closeImageViewer = () => {
+		setViewer({ isOpen: false, index: 0 });
+	};
+
+	return isLoading ? (
+		<div>LOADING</div>
 	) : (
-		<Masonry
-			breakpointCols={3}
-			className="masonry"
-			columnClassName="masonry-column"
-		>
-			{filteredPictures.map((picture) => (
-				<div key={picture._id} className="list-element">
-					<img
-						src={picture.imageURL}
-						alt={picture.label}
-						className="photo"
+		<Fragment>
+			<Masonry
+				breakpointCols={3}
+				className="masonry"
+				columnClassName="masonry-column"
+			>
+				{filteredPictures.map((picture, i) => (
+					<Photo
+						key={picture._id}
+						imageURL={picture.imageURL}
+						label={picture.label}
+						setViewer={setViewer}
+						index={i}
 					/>
-					<div className="overlay">
-						<p className="label">{picture.label}</p>
-						<button className="delete">X</button>
-					</div>
-				</div>
-			))}
-		</Masonry>
+				))}
+			</Masonry>
+			{viewer.isOpen && (
+				<ImageViewer
+					src={imageSources}
+					currentIndex={viewer.index}
+					onClose={closeImageViewer}
+				/>
+			)}
+		</Fragment>
 	);
 };
 
