@@ -21,6 +21,7 @@ const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 	const [pictures, setPictures] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [viewer, setViewer] = useState({ isOpen: false, index: 0 });
+
 	useEffect(() => {
 		const getPictures = async () => {
 			try {
@@ -62,6 +63,8 @@ const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 						label={picture.label}
 						setViewer={setViewer}
 						index={i}
+						token={token}
+						id={picture._id}
 					/>
 				))}
 			</Masonry>

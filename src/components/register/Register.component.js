@@ -47,7 +47,7 @@ const Register = ({ registerSuccess, registerFailure }) => {
 						type="text"
 						name="name"
 						required
-						placeholder="enter name"
+						placeholder="Enter name"
 						value={name}
 						onChange={handleChange}
 						className="input"
@@ -59,7 +59,7 @@ const Register = ({ registerSuccess, registerFailure }) => {
 						type="email"
 						name="email"
 						required
-						placeholder="enter email"
+						placeholder="Enter email"
 						value={email}
 						onChange={handleChange}
 						className="input"
@@ -74,7 +74,7 @@ const Register = ({ registerSuccess, registerFailure }) => {
 						value={password}
 						onChange={handleChange}
 						className="input"
-						placeholder="enter password"
+						placeholder="Enter password"
 					/>
 				</div>
 				<button type="button" className="button" onClick={handleSubmit}>
