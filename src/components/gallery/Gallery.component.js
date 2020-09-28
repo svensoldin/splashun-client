@@ -7,6 +7,7 @@ import { SERVER_URL } from "../../constants";
 import Masonry from "react-masonry-css";
 import ImageViewer from "react-simple-image-viewer";
 import Photo from "../photo/Photo.component";
+import Spinner from "../spinner/Spinner.component";
 
 //Actions
 import { pictureFetchFailure } from "../../redux/picture/picture.actions";
@@ -48,11 +49,11 @@ const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 	};
 
 	return isLoading ? (
-		<div>LOADING</div>
+		<Spinner />
 	) : (
 		<Fragment>
 			<Masonry
-				breakpointCols={3}
+				breakpointCols={{ default: 3, 1200: 3, 880: 2 }}
 				className="masonry"
 				columnClassName="masonry-column"
 			>
