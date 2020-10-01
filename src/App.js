@@ -4,7 +4,7 @@ import Modal from "react-modal";
 
 //Components
 import Gallery from "./components/gallery/Gallery.component";
-import AddPicture from "./components/add-picture/AddPicture.component";
+import AddPicture from "./components/Add-Picture/AddPicture.component";
 import SignInAndSignUp from "./components/signin-and-signup/SignInAndSignUp.component";
 import Navbar from "./components/navbar/Navbar.component";
 
