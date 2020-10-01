@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { SERVER_URL } from "../../constants";
 
 import {
 	signInStart,
@@ -27,7 +28,7 @@ const SignIn = ({
 		e.preventDefault();
 		signInStart();
 		try {
-			const res = await axios.post("http://localhost:5000/users/signin", {
+			const res = await axios.post(`${SERVER_URL}/users/signin`, {
 				email,
 				password,
 			});
