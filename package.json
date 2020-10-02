@@ -1,6 +1,6 @@
 {
   "name": "splashun-client",
-  "homepage": "https://svensoldin.github.io/splashun",
+  "homepage": "https://svensoldin.github.io/splashun-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
