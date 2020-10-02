@@ -32,6 +32,10 @@ const SignIn = ({
 				email,
 				password,
 			});
+			if (res.data === "Wrong credentials") {
+				signInFailure(res.data);
+				return alert("Wrong credentials");
+			}
 			const token = res.data;
 			signInSuccess(token);
 		} catch (err) {

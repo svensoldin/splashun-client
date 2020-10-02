@@ -15,6 +15,7 @@ const Photo = ({ imageURL, label, index, setViewer, id, token }) => {
 			alert("Picture successfully deleted!");
 		} catch (err) {
 			console.log(err);
+			alert("Not authorized");
 		}
 		setModal(false);
 	};
