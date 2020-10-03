@@ -8,6 +8,7 @@ import {
 	signInSuccess,
 	signInFailure,
 } from "../../redux/user/user.actions";
+import { addDanger } from "../../redux/alert/alert.actions";
 
 import "./Signin.styles.css";
 
@@ -16,6 +17,8 @@ const SignIn = ({
 	signInSuccess,
 	signInFailure,
 	setShowRegister,
+	setIsLoading,
+	addDanger,
 }) => {
 	const [credentials, setCredentials] = useState({
 		email: "",
@@ -27,6 +30,7 @@ const SignIn = ({
 	const handleSignin = async (e) => {
 		e.preventDefault();
 		signInStart();
+		setIsLoading(true);
 		try {
 			const res = await axios.post(`${SERVER_URL}/users/signin`, {
 				email,
@@ -34,11 +38,14 @@ const SignIn = ({
 			});
 			if (res.data === "Wrong credentials") {
 				signInFailure(res.data);
-				return alert("Wrong credentials");
+				setIsLoading(false);
+				return addDanger("Wrong credentials");
 			}
 			const token = res.data;
+			setIsLoading(false);
 			signInSuccess(token);
 		} catch (err) {
+			setIsLoading(false);
 			signInFailure(err);
 		}
 	};
@@ -94,6 +101,7 @@ const mapDispatchToProps = (dispatch) => {
 		signInStart: () => dispatch(signInStart()),
 		signInSuccess: (token) => dispatch(signInSuccess(token)),
 		signInFailure: (err) => dispatch(signInFailure(err)),
+		addDanger: (error) => dispatch(addDanger(error)),
 	};
 };
 

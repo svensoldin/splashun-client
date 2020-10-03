@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { SERVER_URL } from "../../constants";
 
 import "../signin/Signin.styles.css";
 
+import { addDanger } from "../../redux/alert/alert.actions";
 import {
 	registerSuccess,
 	registerFailure,
 } from "../../redux/user/user.actions";
 
-const Register = ({ registerSuccess, registerFailure }) => {
+const Register = ({
+	registerSuccess,
+	registerFailure,
+	setIsLoading,
+	addDanger,
+}) => {
 	const [userCredentials, setUserCredentials] = useState({
 		name: "",
 		email: "",
@@ -24,15 +31,21 @@ const Register = ({ registerSuccess, registerFailure }) => {
 	};
 
 	const handleSubmit = async () => {
+		setIsLoading(true);
 		try {
 			const res = await axios({
 				method: "post",
-				url: "http://localhost:5000/users/register",
+				url: `${SERVER_URL}/users/register`,
 				data: userCredentials,
 			});
 			const token = res.data;
+			setIsLoading(false);
 			registerSuccess(token);
 		} catch (err) {
+			if (err.response.data === "User already exists") {
+				addDanger("It seems you are already registered!");
+			}
+			setIsLoading(false);
 			registerFailure(err);
 		}
 	};
@@ -77,7 +90,7 @@ const Register = ({ registerSuccess, registerFailure }) => {
 						placeholder="Enter password"
 					/>
 				</div>
-				<button type="button" className="button" onClick={handleSubmit}>
+				<button className="button" onClick={handleSubmit}>
 					Register
 				</button>
 			</form>
@@ -89,6 +102,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		registerSuccess: (token) => dispatch(registerSuccess(token)),
 		registerFailure: (err) => dispatch(registerFailure(err)),
+		addDanger: (err) => dispatch(addDanger(err)),
 	};
 };
 

@@ -7,21 +7,22 @@ import Gallery from "./components/gallery/Gallery.component";
 import AddPicture from "./components/Add-Picture/AddPicture.component";
 import SignInAndSignUp from "./components/signin-and-signup/SignInAndSignUp.component";
 import Navbar from "./components/navbar/Navbar.component";
+import Alert from "./components/alert/Alert.component";
 
 //Redux
 import { selectToken } from "./redux/user/user.selectors";
 import { selectHidden } from "./redux/picture/picture.selectors";
-import { selectError } from "./redux/picture/picture.selectors";
 import { toggleAddPicture } from "./redux/picture/picture.actions";
 
 import "./App.css";
 
 Modal.setAppElement("#root");
 
-function App({ token, hidden, toggleAddPicture, error }) {
+function App({ token, hidden, toggleAddPicture }) {
 	const [search, setSearch] = useState("");
 	return (
 		<div className="App">
+			<Alert />
 			{token ? (
 				<Fragment>
 					<Navbar setSearch={setSearch} />
@@ -48,7 +49,6 @@ const mapStateToProps = (state) => {
 	return {
 		token: selectToken(state),
 		hidden: selectHidden(state),
-		error: selectError(state),
 	};
 };
 

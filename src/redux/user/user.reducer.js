@@ -2,6 +2,7 @@ import UserActionTypes from "./user.types";
 
 const INITIAL_STATE = {
 	token: null,
+	err: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -10,7 +11,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				token: action.payload,
-				err: null,
 			};
 		case UserActionTypes.SIGN_IN_FAILURE:
 			return {

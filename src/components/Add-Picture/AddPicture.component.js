@@ -39,9 +39,12 @@ const AddPicture = ({
 				},
 			});
 			pictureAddSuccess(res);
-			//Hides the add-picture modal component
+			//Hide the add-picture modal component
 			toggleAddPicture();
 		} catch (err) {
+			alert(
+				"Oops there was a problem with your request! Check if you entered both a label and a URL"
+			);
 			pictureAddFailure(err);
 		}
 	};
