@@ -1,8 +1,10 @@
 .searchbar {
 	padding: 10px;
-	border-radius: 10px;
-	width: 50%;
-	border: 1px solid grey;
-	color: grey;
+	border-radius: 20px;
+	width: 40%;
+	background-color: rgb(240, 240, 240);
+	color: gray;
+	font-weight: bold;
 	outline: none;
+	border: none;
 }

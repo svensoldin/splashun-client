@@ -53,7 +53,7 @@ const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 	) : (
 		<Fragment>
 			<Masonry
-				breakpointCols={{ default: 3, 1200: 3, 880: 2 }}
+				breakpointCols={{ default: 3, 600: 2 }}
 				className="masonry"
 				columnClassName="masonry-column"
 			>

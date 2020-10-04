@@ -6,7 +6,7 @@
 	width: 100%;
 	height: 100%;
 	border-radius: 7px;
-	box-shadow: 3px 3px 5px 6px #ccc;
+	/*	box-shadow: 3px 3px 5px 6px #ccc;*/
 	display: block;
 }
 
@@ -42,7 +42,7 @@
 	color: red;
 	border: 1px solid red;
 	background: none;
-	height: 50px;
+	height: 30px;
 	width: 80px;
 	margin: 5px;
 	border-radius: 10px;
@@ -56,4 +56,15 @@
 .delete:hover {
 	background: red;
 	color: white;
+}
+
+@media screen and (max-width: 600px) {
+	.overlay {
+		font-size: 11px;
+	}
+	.delete {
+		font-size: 11px;
+		width: 50px;
+		height: 20px;
+	}
 }

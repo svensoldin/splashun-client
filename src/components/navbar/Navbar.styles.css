@@ -1,5 +1,37 @@
 .navbar {
 	display: flex;
-	justify-content: space-around;
-	margin: 20px 10px;
+	justify-content: space-between;
+	margin: 60px 10px;
+	position: fixed;
+	top: 0;
+	width: 95%;
+	margin-top: 0px;
+	z-index: 1;
+	background-color: #fff;
+	padding: 15px;
+	overflow: none;
+}
+
+.logo-container {
+	width: 50px;
+	height: 100%;
+}
+
+.nav-container {
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.add-picture-btn {
+	padding: 15px;
+	border-radius: 15px;
+	color: white;
+	background-color: #3cb371;
+	border: 1px solid #3cb371;
+	font-size: 12px;
+	cursor: pointer;
+	width: 130px;
+	font-weight: bold;
+	outline: none;
 }

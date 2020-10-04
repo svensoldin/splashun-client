@@ -2,19 +2,6 @@
 	text-align: center;
 }
 
-.add-picture-btn {
-	padding: 15px;
-	border-radius: 15px;
-	color: white;
-	background-color: #3cb371;
-	border: 1px solid #3cb371;
-	font-size: 12px;
-	cursor: pointer;
-	width: 150px;
-	font-weight: bold;
-	outline: none;
-}
-
 .modal {
 	position: absolute;
 	top: 25vh;
