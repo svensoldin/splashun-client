@@ -1,5 +1,6 @@
 .App {
 	text-align: center;
+	width: 100%;
 }
 
 .modal {
@@ -20,4 +21,12 @@
 	right: 0;
 	left: 0;
 	background-color: rgba(60, 60, 60, 0.65);
+}
+
+@media screen and (max-width: 600px) {
+	.modal {
+		left: 0;
+		margin: 0 10px 0 10px;
+		width: 88%;
+	}
 }

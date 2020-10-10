@@ -13,7 +13,7 @@ const Searchbar = ({ setSearch }) => {
 				type="text"
 				onChange={handleSearch}
 				className="searchbar"
-				placeholder="search pictures..."
+				placeholder="Search high-resolution photos"
 			/>
 		</Fragment>
 	);

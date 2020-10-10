@@ -17,7 +17,7 @@ const Navbar = ({ setSearch, toggleAddPicture }) => {
 				{" "}
 				<Searchbar setSearch={setSearch} />
 				<button className="add-picture-btn" onClick={toggleAddPicture}>
-					Add Picture
+					Submit a photo
 				</button>
 			</div>
 		</div>
