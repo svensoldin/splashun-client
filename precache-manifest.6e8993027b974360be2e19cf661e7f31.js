@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bc508545ca52d727e7489e1ce002ebc6",
+    "revision": "48738500467d0fea9ed8325569cb05cf",
     "url": "/splashun-client/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/splashun-client/static/css/2.89e89512.chunk.css"
   },
   {
-    "revision": "27ea9a57d3320b48a364",
-    "url": "/splashun-client/static/css/main.1604a374.chunk.css"
+    "revision": "36cd3fa97b712916874d",
+    "url": "/splashun-client/static/css/main.5a5eaf58.chunk.css"
   },
   {
     "revision": "07ad7887617970fb92c8",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/splashun-client/static/js/2.3b22ee51.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "27ea9a57d3320b48a364",
-    "url": "/splashun-client/static/js/main.03b38ae9.chunk.js"
+    "revision": "36cd3fa97b712916874d",
+    "url": "/splashun-client/static/js/main.75ac4adb.chunk.js"
   },
   {
     "revision": "72ef005e823d344ee770",

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/splashun-client/precache-manifest.cc79e472443d95971145e111ed7f10c2.js"
+  "/splashun-client/precache-manifest.6e8993027b974360be2e19cf661e7f31.js"
 );
 
 self.addEventListener('message', (event) => {
