@@ -37,7 +37,7 @@ const Gallery = ({ token, search, picture, pictureFetchFailure }) => {
 			setIsLoading(false);
 		};
 		getPictures();
-	}, [setPictures, token, picture, pictureFetchFailure]);
+	}, [setPictures, token, pictures, pictureFetchFailure]);
 
 	const filteredPictures = pictures.filter((picture) => {
 		return picture.label.toLowerCase().includes(search.toLowerCase());

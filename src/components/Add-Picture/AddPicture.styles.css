@@ -14,6 +14,7 @@
 	border: 1px solid black;
 	margin: 10px;
 	width: 90%;
+	outline: none;
 }
 
 .button-container {
